@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Writings - Personal Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+        .index {
+            width: 200px;
+            padding: 20px;
+            background-color: transparent;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            z-index: 1;
+            text-align: center;
+        }
+        .index ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .index li {
+            margin-bottom: 10px;
+        }
+        .index a {
+            text-decoration: none;
+            color: #333333;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8em;
+        }
+        .index a:hover {
+            text-decoration: underline;
+        }
+        .writings-container {
+            flex-grow: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #2c3e50;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        .essay-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .essay-item {
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        .essay-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .essay-title::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+        .essay-item.active .essay-title::after {
+            transform: rotate(180deg);
+        }
+        .essay-excerpt {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .essay-full-content {
+            display: none;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        #contact-info {
+            display: none;
+            text-align: center;
+        }
+        #contact-info p {
+            margin: 5px 0;
+        }
+        #contact-info a {
+            color: #333333;
+            text-decoration: none;
+        }
+        #contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="index">
+        <ul>
+            <li><a href="index.html">Me</a></li>
+            <li>My writings</li>
+            <li><a href="reading-list.html">Reading list</a></li>
+            <li><a href="useful-stuff.html">Useful stuff</a></li>
+            <li><a href="#" onclick="toggleContact(event)">Contact</a></li>
+        </ul>
+        <div id="contact-info">
+            <p>X: <a href="https://x.com/satvikmp" target="_blank">@satvikmp</a></p>
+            <p>Email: satwikscience@gmail.com</p>
+        </div>
+    </div>
+    <div class="writings-container">
+        <h1>My Writings</h1>
+        <ul class="essay-list">
+            <li class="essay-item" onclick="toggleEssay(this)">
+                <h2 class="essay-title">The Future of AI</h2>
+                <p class="essay-excerpt">Exploring the potential impacts and ethical considerations of artificial intelligence in our rapidly evolving world.</p>
+                <div class="essay-full-content">
+                    <p>This is the full content of the essay about the future of AI. It goes into more detail about the topics mentioned in the excerpt...</p>
+                </div>
+            </li>
+            <li class="essay-item" onclick="toggleEssay(this)">
+                <h2 class="essay-title">The Art of Coding</h2>
+                <p class="essay-excerpt">Delving into the creative aspects of programming and how it intersects with problem-solving and design.</p>
+                <div class="essay-full-content">
+                    <p>This is the full content of the essay about the art of coding. It explores the creative process of programming and its similarities to other forms of art...</p>
+                </div>
+            </li>
+            <li class="essay-item" onclick="toggleEssay(this)">
+                <h2 class="essay-title">Exploring the Cosmos</h2>
+                <p class="essay-excerpt">A journey through recent astronomical discoveries and their implications for our understanding of the universe.</p>
+                <div class="essay-full-content">
+                    <p>This is the full content of the essay about exploring the cosmos. It discusses recent astronomical discoveries and their significance...</p>
+                </div>
+            </li>
+            <!-- Add more essay cards as needed -->
+        </ul>
+    </div>
+
+    <script>
+        function toggleContact(event) {
+            event.preventDefault();
+            var contactInfo = document.getElementById('contact-info');
+            contactInfo.style.display = contactInfo.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleEssay(item) {
+            var fullContent = item.querySelector('.essay-full-content');
+            var allFullContents = document.querySelectorAll('.essay-full-content');
+            var allEssayItems = document.querySelectorAll('.essay-item');
+            
+            allFullContents.forEach(function(content) {
+                if (content !== fullContent) {
+                    content.style.display = 'none';
+                }
+            });
+
+            allEssayItems.forEach(function(essayItem) {
+                if (essayItem !== item) {
+                    essayItem.classList.remove('active');
+                }
+            });
+
+            if (fullContent.style.display === 'none' || fullContent.style.display === '') {
+                fullContent.style.display = 'block';
+                item.classList.add('active');
+            } else {
+                fullContent.style.display = 'none';
+                item.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

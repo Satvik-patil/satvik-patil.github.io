@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f8f4e5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            text-align: center;
+        }
+        .index {
+            width: 200px;
+            padding: 20px;
+            background-color: transparent;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            z-index: 1;
+            text-align: center;
+        }
+        .index ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .index li {
+            margin-bottom: 10px;
+        }
+        .index a {
+            text-decoration: none;
+            color: #333333;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8em;
+        }
+        .index a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .name {
+            font-family: 'Merriweather', serif;
+            font-size: 3em;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        #contact-info {
+            display: none;
+            text-align: center;
+        }
+        #contact-info p {
+            margin: 5px 0;
+        }
+        #contact-info a {
+            color: #333333;
+            text-decoration: none;
+        }
+        #contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="index">
+        <ul>
+            <li>Me</li>
+            <li><a href="writings.html">My writings</a></li>
+            <li><a href="reading-list.html">Reading list</a></li>
+            <li><a href="useful-stuff.html">Useful stuff</a></li>
+            <li><a href="#" onclick="toggleContact(event)">Contact</a></li>
+        </ul>
+        <div id="contact-info">
+            <p>X: <a href="https://x.com/satvikmp" target="_blank">@satvikmp</a></p>
+            <p>Email: satwikscience@gmail.com</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="name">Your Name</div>
+        
+        <section id="about">
+            <p>Interested in astronomy, inventions, science, AI, books and manga.</p>
+            <p>Love working on projects, going deep on things and talking to interesting people.</p>
+        </section>
+    </div>
+
+    <script>
+        function toggleContact(event) {
+            event.preventDefault();
+            var contactInfo = document.getElementById('contact-info');
+            contactInfo.style.display = contactInfo.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
