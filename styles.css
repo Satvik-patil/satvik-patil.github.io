@@ -1,24 +1,22 @@
+/* Import Noto Sans JP font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
 :root {
     --primary-color: #3498db;
     --secondary-color: #2c3e50;
     --text-color: #333;
-    --background-color: #ecf0f1;
-}
-
-* {
-    box-sizing: border-box;
+    --background-color: #f3f0e6;
 }
 
 body {
-    font-family: 'Merriweather', serif;
+    font-family: 'Noto Sans JP', sans-serif;
     line-height: 1.6;
-    color: #333333;
-    background-color: #f8f4e5;
+    color: var(--text-color);
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
     display: flex;
-    text-align: center;
-    position: relative;
+    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -49,24 +47,21 @@ body::after {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-grow: 1;
 }
 
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.nav-container {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px 0;
 }
 
-header .container {
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 1.5rem;
 }
 
 nav ul {
@@ -76,99 +71,34 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: white;
-    font-weight: bold;
+    color: var(--text-color);
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: var(--secondary-color);
-}
-
-main {
-    padding: 2rem 0;
-    min-height: calc(100vh - 100px);
-}
-
-footer {
-    background-color: var(--secondary-color);
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.social-links a {
-    color: white;
-    font-size: 1.5rem;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
     color: var(--primary-color);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
 }
 
-#about-me {
-    text-align: center;
-}
-
-#about-me img {
-    max-width: 250px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    border: 5px solid var(--primary-color);
-}
-
-#essay-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-#essay-list li {
-    margin-bottom: 10px;
-}
-
-#essay-list a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-#essay-list a:hover {
-    color: var(--secondary-color);
-}
-
-#essay-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.writings-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: left;
-}
-
-h1 {
-    font-family: 'Playfair Display', serif;
+.page-title {
     font-size: 2.5em;
-    color: #2c3e50;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+}
+
+/* Add styles for specific pages */
+#about-me, #reading-list, #useful-stuff {
     text-align: center;
-    margin-bottom: 40px;
 }
 
 .essay-list {
@@ -190,36 +120,17 @@ h1 {
 }
 
 .essay-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.4em;
-    margin-bottom: 0;
-    color: #2c3e50;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
     cursor: pointer;
-}
-
-.essay-title::after {
-    content: '▼';
-    font-size: 0.8em;
-    transition: transform 0.3s ease;
-}
-
-.essay-item.active .essay-title::after {
-    transform: rotate(180deg);
+    font-weight: 700;
 }
 
 .essay-excerpt {
-    display: none;
     font-size: 0.9em;
     color: #666;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.essay-item.active .essay-excerpt {
-    display: block;
 }
 
 .essay-full-content {
@@ -228,34 +139,14 @@ h1 {
     border-top: 1px solid #eee;
 }
 
-.essay-item.active .essay-full-content {
-    display: block;
-}
+/* Add responsive design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.read-more {
-    display: inline-block;
-    margin-top: 15px;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.read-more:hover {
-    color: var(--secondary-color);
-}
-
-.index ul li, .index ul li a {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8em;
-    color: #333333;
-    text-decoration: none;
-}
-
-.index ul li {
-    margin-bottom: 10px;
-}
-
-.index ul li a:hover {
-    text-decoration: underline;
+    nav ul li {
+        margin: 10px 0;
+    }
 }
