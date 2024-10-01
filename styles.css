@@ -35,6 +35,12 @@ body::after {
     background-size: contain;
     z-index: -1;
     pointer-events: none;
+    animation: sway 10s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
 }
 
 .no-webp body::after {
@@ -50,6 +56,10 @@ body::after {
     margin: 0 auto;
     padding: 0 20px;
     flex-grow: 1;
+    background-color: rgba(243, 240, 230, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .nav-container {

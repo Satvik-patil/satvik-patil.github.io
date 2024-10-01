@@ -43,7 +43,18 @@ function toggleEssay(item) {
     }
 }
 
-// Initialize the page
+// Add this function
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
+
+// Add event listener to DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     displayEssays();
+    
+    // Add dark mode toggle button
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.textContent = 'Toggle Dark Mode';
+    darkModeToggle.onclick = toggleDarkMode;
+    document.body.insertBefore(darkModeToggle, document.body.firstChild);
 });
