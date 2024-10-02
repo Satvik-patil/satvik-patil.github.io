@@ -25,8 +25,8 @@ body {
 body::after {
     content: '';
     position: fixed;
-    left: 0;
-    bottom: 0;
+    left: -15px;  /* Changed from 0 to -15px */
+    bottom: -15px; /* Changed from 0 to -15px */
     width: 360px;  /* Increased from 300px to 360px (1.2 times larger) */
     height: 360px; /* Increased from 300px to 360px (1.2 times larger) */
     background-image: url('flowers.webp');
@@ -161,5 +161,7 @@ h1, h2, h3, h4, h5, h6 {
     body::after {
         width: 240px;  /* Increased from 200px to 240px (1.2 times larger) */
         height: 240px; /* Increased from 200px to 240px (1.2 times larger) */
+        left: -15px;  /* Added this line */
+        bottom: -15px; /* Added this line */
     }
 }
