@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (error) {
                 console.error('Error fetching locations:', error);
             }
-        }, 300); // Wait 300ms after user stops typing
+        }, 300);
     });
 
     // Close suggestions when clicking outside
