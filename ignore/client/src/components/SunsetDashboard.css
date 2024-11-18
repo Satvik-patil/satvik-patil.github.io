@@ -1,0 +1,44 @@
+.sunset-dashboard {
+  margin-top: 2rem;
+}
+
+.predictions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.prediction-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.score-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.score {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.details {
+  margin-top: 1rem;
+}
+
+.details p {
+  margin: 0.5rem 0;
+  color: #666;
+} 

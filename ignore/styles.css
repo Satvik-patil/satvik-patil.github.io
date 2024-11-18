@@ -1,0 +1,212 @@
+/* No need to import Gill Sans or Futura as they are system fonts */
+
+body {
+    font-family: 'Gill Sans', 'Futura', sans-serif;
+    line-height: 1.6;
+    color: #fff; /* Change text color to white for better contrast */
+    background-color: #333; /* Update the background color to match the navigation bar */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    left: -15px;  /* Changed from 0 to -15px */
+    bottom: -15px; /* Changed from 0 to -15px */
+    width: 360px;  /* Increased from 300px to 360px (1.2 times larger) */
+    height: 360px; /* Increased from 300px to 360px (1.2 times larger) */
+    background-image: url('flowers.webp');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.no-webp body::after {
+    background-image: url('flowers.png');
+}
+
+.webp body::after {
+    background-image: url('flowers.webp');
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+
+.nav-container {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 20px 0;
+}
+
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    background-color: rgba(243, 240, 230, 0.8);
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gill Sans', 'Futura', sans-serif;
+    font-weight: 700;
+}
+
+.page-title {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+}
+
+/* Add styles for specific pages */
+#about-me, #reading-list, #useful-stuff {
+    text-align: center;
+}
+
+.essay-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.essay-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.essay-item:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.essay-title {
+    font-family: 'Gill Sans', 'Futura', sans-serif;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.essay-excerpt {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.essay-full-content {
+    display: none;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: row; /* Changed from column to row */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        justify-content: center; /* Center the items horizontally */
+        padding: 10px;
+    }
+
+    nav ul li {
+        margin: 5px 10px; /* Adjust margins for better spacing */
+    }
+
+    body::after {
+        width: 180px;
+        height: 180px;
+        left: -10px;
+        bottom: -10px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .page-title {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .essay-item {
+        padding: 15px;
+    }
+
+    .essay-title {
+        font-size: 1.2em;
+    }
+
+    .essay-excerpt {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        padding: 5px;
+    }
+
+    nav ul li a {
+        font-size: 0.85em; /* Slightly reduce font size for very small screens */
+        padding: 3px 8px; /* Adjust padding for smaller screens */
+    }
+
+    body::after {
+        width: 150px;
+        height: 150px;
+    }
+
+    .page-title {
+        font-size: 1.8em;
+    }
+
+    .essay-title {
+        font-size: 1.1em;
+    }
+
+    .essay-excerpt {
+        font-size: 0.8em;
+    }
+}
+
+/* ... existing code ... */

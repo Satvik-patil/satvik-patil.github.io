@@ -2,36 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Satwik Patil</title>
-    <!-- Removed Google Fonts import -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset Quality Predictor</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="nav-container">
-        <nav>
-            <ul>
-                <li><a href="index.html">Me</a></li>
-                <li><a href="writings.html">My writings</a></li>
-                <li><a href="reading-list.html">Reading list</a></li>
-                <li><a href="useful-stuff.html">Useful stuff</a></li>
-            </ul>
-        </nav>
-    </div>
     <div class="container">
-        <h1 class="page-title" style="font-size: 1.25em;">Satwik Patil</h1>
+        <h1>Sunset Quality Predictor</h1>
         
-        <section id="about">
-            <p>Interested in astronomy, inventions, science, AI, books and manga.</p>
-            <p>Love working on projects, going deep on things and talking to interesting people.</p>
-        </section>
+        <div class="location-input">
+            <form id="locationForm">
+                <div class="input-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" placeholder="Enter city or coordinates">
+                    <button type="button" id="getCurrentLocation">Use My Location</button>
+                </div>
+                
+                <div class="input-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                
+                <button type="submit">Get Prediction</button>
+            </form>
+        </div>
 
-        <div id="contact-info">
-            <p>X: <a href="https://x.com/satvikmp" target="_blank">@satvikmp</a></p>
-            <p>Email: satwikscience@gmail.com</p>
+        <div class="predictions-container">
+            <!-- Predictions will be loaded here -->
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+</html> 

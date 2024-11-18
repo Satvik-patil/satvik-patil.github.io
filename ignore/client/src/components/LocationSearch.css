@@ -1,0 +1,33 @@
+.location-search {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.location-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.suggestions-list {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestions-list li {
+  padding: 0.8rem;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background: #f5f5f5;
+} 
