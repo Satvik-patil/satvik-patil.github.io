@@ -1,3 +1,5 @@
+let timeoutId;
+
 document.addEventListener('DOMContentLoaded', function() {
     // Set default date to today
     const dateInput = document.getElementById('date');
@@ -253,4 +255,71 @@ document.addEventListener('DOMContentLoaded', function() {
         
         container.innerHTML = html;
     }
-}); 
+
+    // Add location input event listener
+    const locationInput = document.getElementById('location');
+    const suggestionsContainer = document.createElement('div');
+    suggestionsContainer.className = 'location-suggestions';
+    locationInput.parentNode.insertBefore(suggestionsContainer, locationInput.nextSibling);
+
+    locationInput.addEventListener('input', function(e) {
+        clearTimeout(timeoutId);
+        const query = e.target.value.trim();
+        
+        if (query.length < 2) {
+            suggestionsContainer.innerHTML = '';
+            return;
+        }
+
+        // Debounce API calls
+        timeoutId = setTimeout(async () => {
+            try {
+                const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=5&appid=${CONFIG.WEATHER_API_KEY}`;
+                const response = await fetch(geocodeUrl);
+                const locations = await response.json();
+                
+                displayLocationSuggestions(locations, suggestionsContainer, locationInput);
+            } catch (error) {
+                console.error('Error fetching locations:', error);
+            }
+        }, 300); // Wait 300ms after user stops typing
+    });
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.input-group')) {
+            suggestionsContainer.innerHTML = '';
+        }
+    });
+});
+
+function displayLocationSuggestions(locations, container, input) {
+    if (!locations.length) {
+        container.innerHTML = '<div class="suggestion-item">No locations found</div>';
+        return;
+    }
+
+    const html = locations.map(location => {
+        const name = location.local_names?.en || location.name;
+        const state = location.state ? `, ${location.state}` : '';
+        const country = location.country ? `, ${location.country}` : '';
+        return `
+            <div class="suggestion-item" data-lat="${location.lat}" data-lon="${location.lon}">
+                ${name}${state}${country}
+            </div>
+        `;
+    }).join('');
+
+    container.innerHTML = html;
+
+    // Add click handlers to suggestions
+    container.querySelectorAll('.suggestion-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const lat = this.dataset.lat;
+            const lon = this.dataset.lon;
+            input.value = this.textContent.trim();
+            container.innerHTML = '';
+            fetchPrediction();
+        });
+    });
+} 
