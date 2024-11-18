@@ -1,0 +1,439 @@
+Real-time Air Quality data feed
+This API is provided by the World Air Quality Index project.
+
+For more infomration, and for the terms of service, please refer to the API overview page.
+
+
+City Feed
+City Feed - city/station feed
+This API can be used to get for the real-time Air Qualuty index for a given station.
+
+get
+/feed/:city/?token=:token
+Parameter
+Field	Type	Description
+city	String	
+Name of the city (eg beijing), or id (eg @7397)
+
+token	String	
+Your private API token (see aqicn.org/data-platform/token/)
+
+callback	String	
+optional JSONP callback function name
+
+Request-Example:
+{
+    "token": "demo",
+    "city": "shanghai"
+}
+Success 200
+Field	Type	Description
+status	String	
+status code, can be ok or error.
+
+data	Object	
+Station data
+
+  idx	Number	
+Unique ID for the city monitoring station.
+
+  aqi	Number	
+Real-time air quality information.
+
+  time	Object	
+Measurement time information.
+
+    s	String	
+Local measurement time time.
+
+    tz	String	
+Station timezone.
+
+  city	Object	
+Information about the monitoring station.
+
+    name	String	
+Name of the monitoring station.
+
+    geo	[Number]	
+Latitude/Longitude of the monitoring station.
+
+    url	String	
+Webpage associated to the the monitoring station.
+
+  attributions	[Object]	
+EPA Attribution for the station
+
+  iaqi	Object[]	
+Measurement time information.
+
+    pm25	Object	
+Individual AQI for the PM2.5.
+
+      v	Number	
+Individual AQI for the PM2.5.
+
+  forecast	Object[]	
+Forecast data
+
+    daily	Object[]	
+Daily forecast data
+
+      pm25	Object	
+PM2.5 forecast
+
+      pmp10	Object	
+PM10 forecast
+
+      o3	Object	
+Ozone forecast
+
+      uvi	Object	
+Ultra Violet Index forecast
+
+Success-Response:
+HTTP/1.1 200 OK
+{
+  "status": "ok",
+  "data": {
+        idx:7397,
+        aqi:71,
+        time:{
+            v:1481396400,
+            s:"2016-12-10 19:00:00",
+            tz:"-06:00"
+        },
+        city:{
+            name:"Chi_sp, Illinois",
+            url:"https://aqicn.org/city/usa/illinois/chi_sp/",
+            geo:["41.913600","-87.723900"]
+        },
+        iaqi:{
+            pm25:{
+                v:71
+            }
+        },
+        forecast:{
+            daily: {
+                pm25: [{
+                    avg: 154,
+                    day: "2020-06-13",
+                    max: 157,
+                    min: 131
+                }, {
+                    avg: 163,
+                    day: "2020-06-14",
+                    max: 173,
+                    min: 137
+                }]
+            }
+        }
+}
+Error 4xx
+Name	Description
+overQuota	
+The request is over quota limits
+
+invalidKey	
+The key is not valid
+
+unknownCity	
+The city is unknown
+
+Error-Response:
+Error-Response:
+Error-Response:
+HTTP/1.1 200 OK
+{
+  "status": "error",
+  "message": "Over quota"
+}
+Send a Sample Request
+
+https://api.waqi.info/feed/shanghai/?token=demo
+url
+Parameters
+Parameter 
+ajax-auto
+city
+city
+String
+token
+token
+String
+callback
+callback
+String
+Geolocalized Feed
+Geolocalized Feed - gelocalized feed (lat/lng based)
+This API can be used to search for the nearest station from a given latitude/longitude.
+
+get
+/feed/geo::lat;:lng/?token=:token
+Parameter
+Field	Type	Description
+lat	Number	
+Latitude
+
+lng	Number	
+Longitude
+
+token	String	
+Your private API token (see aqicn.org/data-platform/token/)
+
+optional	String	
+callback JSONP callback function name
+
+Success 200
+Field	Type	Description
+status	String	
+status code, can be ok or error.
+
+data	String	
+real-time air quality infomrmation.
+
+Success-Response:
+HTTP/1.1 200 OK
+{
+  "status": "ok",
+  "data": ...
+}
+Error 4xx
+Name	Description
+overQuota	
+The request is over quota limits
+
+invalidKey	
+The key is not valid
+
+Error-Response:
+Error-Response:
+HTTP/1.1 200 OK
+{
+  "status": "error",
+  "message": "Over quota"
+}
+Send a Sample Request
+
+https://api.waqi.info/feed/geo:10.3;20.7/?token=demo
+url
+Parameters
+Parameter 
+ajax-auto
+lat
+lat
+Number
+lng
+lng
+Number
+token
+token
+String
+optional
+optional
+String
+Geolocalized Feed - geo-localized feed (ip based)
+This API can be used to get the nearest station close to the user location, based on the IP address information.
+
+get
+/feed/here/?token=:token
+Parameter
+Field	Type	Description
+token	String	
+Your private API token (see aqicn.org/data-platform/token/)
+
+callback	String	
+optional JSONP callback function name
+
+Success 200
+Field	Type	Description
+status	String	
+status code, can be ok or error.
+
+data	Object	
+real-time air quality information.
+
+Success-Response:
+HTTP/1.1 200 OK
+{
+  "status": "ok",
+  "data": ...
+}
+Error 4xx
+Name	Description
+overQuota	
+The request is over quota limits
+
+invalidKey	
+The key is not valid
+
+Error-Response:
+Error-Response:
+HTTP/1.1 200 OK
+{
+  "status": "error",
+  "message": "Over quota"
+}
+Send a Sample Request
+
+https://api.waqi.info/feed/here/?token=demo
+url
+Parameters
+Parameter 
+ajax-auto
+token
+token
+String
+callback
+callback
+String
+Map Queries
+Map Queries - stations on the map
+This API can be used to get all the stations within a given lat/lng bounds
+
+get
+/map/bounds?token=:token&latlng=:latlng
+Parameter
+Field	Type	Description
+token	String	
+Your private API token (see aqicn.org/data-platform/token/)
+
+latlng	String	
+map bounds in the form lat1,lng1,lat2,lng2
+
+networks	String	
+air quality networks list, separated by comma, to be included in the query. Default is 'all' when using API version 2. Possible options are 'official' (or 'hourly') and 'citizen' (or 'airnet').
+
+callback	String	
+optional JSONP callback function name
+
+Success 200
+Field	Type	Description
+status	String	
+status code, can be ok or error.
+
+data	Object	
+real-time air quality information.
+
+Success-Response:
+HTTP/1.1 200 OK
+{
+  "status": "ok",
+  "data": ...
+}
+Error 4xx
+Name	Description
+overQuota	
+The request is over quota limits
+
+invalidKey	
+The key is not valid
+
+Error-Response:
+Error-Response:
+HTTP/1.1 200 OK
+{
+  "status": "error",
+  "message": "Over quota"
+}
+Send a Sample Request
+
+https://api.waqi.info/v2/map/bounds?latlng=39.379436,116.091230,40.235643,116.784382&networks=all&token=demo
+url
+Parameters
+Parameter 
+ajax-auto
+token
+token
+String
+latlng
+latlng
+String
+networks
+networks
+String
+callback
+callback
+String
+Search
+Search - search by name
+This API can be used to search stations by name
+
+get
+/search/?keyword=:keyword&token=:token
+Parameter
+Field	Type	Description
+keyword	String	
+Name of the station your are looking for (eg beijing, bulgaria, bangalore)
+
+token	String	
+Your private API token (see aqicn.org/data-platform/token/)
+
+callback	String	
+optional JSONP callback function name
+
+Request-Example:
+{
+    "token": "demo",
+    "keyword": "bangalore"
+}
+Success 200
+Field	Type	Description
+status	String	
+status code, can be ok or error.
+
+data	[]	
+List of results
+
+  uid	Number	
+Unique ID for the city monitoring station.
+
+  aqi	Number	
+Real-time air quality infomrmation.
+
+  time	Object	
+Measurement time infomration.
+
+    s	String	
+Local measurement time time.
+
+    tz	String	
+Station timezone.
+
+  city	Object	
+Information about the monitoring station.
+
+    name	String	
+Name of the monitoring station.
+
+    geo	[Number]	
+Latitude/Longitude of the monitoring station.
+
+    url	String	
+Url for the attribution link.
+
+Success-Response:
+HTTP/1.1 200 OK
+{
+  "status": "ok",
+  "data": [{
+        "idx":8190,
+        "aqi":102,
+        "time":{
+            "v":1485815400,
+            "s":"2017-01-31 04:00:00",
+            "tz":"+05:30"
+        },
+        "city":{
+            "name":"BTM, Bangalore, India",
+            "url":"https://aqicn.org/india/bangalore/btm",
+            "geo":[12.9128118, 77.6092188]
+        }]
+}
+Error 4xx
+Name	Description
+overQuota	
+The request is over quota limits
+
+invalidKey	
+The key is not valid

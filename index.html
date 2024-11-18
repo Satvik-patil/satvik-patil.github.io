@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunset Quality Predictor</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunset Quality Predictor</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Sunset Quality Predictor</h1>
-        
-        <div class="location-input">
-            <form id="locationForm">
-                <div class="input-group">
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="Enter city or coordinates">
-                    <button type="button" id="getCurrentLocation">Use My Location</button>
-                </div>
-                
-                <div class="input-group">
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date">
-                </div>
-                
-                <button type="submit">Get Prediction</button>
-            </form>
+  <div id="app">
+    <h1>Sunset Quality Predictor</h1>
+    <div id="search-section">
+      <form id="location-form">
+        <div class="location-wrapper">
+          <input type="text" id="location" placeholder="Enter your city" required />
+          <input type="hidden" id="lat" />
+          <input type="hidden" id="lon" />
         </div>
-
-        <div class="predictions-container">
-            <!-- Predictions will be loaded here -->
-        </div>
+        <button type="submit">Predict</button>
+      </form>
     </div>
-
-    <script src="config.js"></script>
-    <script src="script.js"></script>
+    <div id="result" class="hidden">
+      <div class="score-display">
+        <div class="location" id="location-display"></div>
+        <div class="quality" id="sunset-quality"></div>
+        <div class="score-number" id="score-number"></div>
+        <div class="score-label">Sunset Quality Score</div>
+      </div>
+      <div id="detailed-metrics"></div>
+      <button class="back-button" onclick="showSearchSection()">← Search Different Location</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
-</html> 
+</html>
